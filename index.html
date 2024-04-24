@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Joke Generator</title>
+    <meta name="description" content="Generate random jokes and have a good laugh with the Random Joke Generator app. Enjoy a variety of humorous content updated regularly. Find hilarious jokes, puns, comedy, laughter, and more. Explore our vast collection of funny content and share with friends for endless entertainment.">
+    <meta name="keywords" content="jokes, humor, random jokes, joke generator, funny jokes, laughter, comedy, puns, hilarious jokes, joke app, joke website, entertainment, amusement, jests, gags, comic relief, humor website, joke of the day, light-hearted humor, witty jokes, chuckles, witty banter">
+
+    <link rel="stylesheet" href="./static/styles.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="./static/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./static/favicons/favicon-32x32.png">
+    <link rel="manifest" href="./static/favicons/site.webmanifest">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5283547444464413"
+         crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="title">
+      <h1>The Best Random Jokes Generator</h1>
+      <h2>Serving up Hilarious, Witty, and Extra Spicy Jokes</h2>
+    </div>
+    <div class="container">
+        <div id="joke-content">
+            <p id="joke"></p>
+            <p id="answer"></p>
+        </div>
+        <button id="generator">Generate</button>
+    </div>
+    <div class="footer">
+        <p>Created by fa5tworm you can see my profile <a href="https://www.fiverr.com/s/Re43EN" target="_blank">HERE</a> or <a href="https://www.upwork.com/freelancers/~011934ef50f9c37f74" target="_blank">HERE</a></p> 
+    </div>
+    <script>
+        function getRandomItem(array) {
+            return array[Math.floor(Math.random() * array.length)];
+        }
+
+        function updateJoke(randomDict) {
+            const jokeElement = document.getElementById('joke');
+            const answerElement = document.getElementById('answer');
+            
+            jokeElement.textContent = randomDict.title;
+            answerElement.innerHTML = randomDict.body;
+        }
+        fetch('jokes.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch JSON file');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const randomDict = getRandomItem(data);
+
+            updateJoke(randomDict);
+
+            document.getElementById('generator').addEventListener('click', function() {
+                updateJoke(getRandomItem(data));
+            });
+            console.log(randomDict);
+
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    </script>
+</body>
+</html>
