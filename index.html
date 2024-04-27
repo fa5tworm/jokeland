@@ -31,7 +31,9 @@
     <div class="title">
       <h1>The Best Random Jokes Generator</h1>
       <h2>Serving up Hilarious, Witty, and Extra Spicy Jokes</h2>
-      <p>Created by fa5tworm, see my profile <a href="https://www.upwork.com/freelancers/~011934ef50f9c37f74" target="_blank">HERE</a></p>
+      <!-- <p>Created by fa5tworm, see my profile <a href="https://www.upwork.com/freelancers/~011934ef50f9c37f74" target="_blank">HERE</a></p> -->
+      <p>Created by Shaun Clark</p>
+      <p>Ready for more? Check my new book on Amazon kindle</p>
       <div> <span><a href="https://amzn.to/3Um79fs" target="_blank" rel=" noopener noreferrer"><img height="160" width="103" typeof="foaf:Image" class="image-style-none" src="images/off-the-hook-shaun-clark.jpg"></a></span> </div>
       <div class="views-field views-field-title"> <span class="field-content"><a href="https://amzn.to/3Um79fs" target="_blank" rel=" noopener noreferrer">Off The Hook: The Ultimate English Slang Dictionary</a></span> </div></td>
     </div>
@@ -51,8 +53,10 @@
             const jokeElement = document.getElementById('joke');
             const answerElement = document.getElementById('answer');
             
+            let newAnswer = randomDict.body.replace(/<br>/g, "\n");
+            
             jokeElement.textContent = randomDict.title;
-            answerElement.innerHTML = randomDict.body;
+            answerElement.textContent = newAnswer;
         }
         fetch('jokes.json')
         .then(response => {
